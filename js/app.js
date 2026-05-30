@@ -8,7 +8,7 @@
 
 // ── Config ────────────────────────────────────────────────
 const CONFIG = {
-  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzLE8uPtiaq9BO8s49XYD4fHgCWq3wOq-t4XgpUYya9KBkVhwX3KFhZjLHUmnTR091Yrg/exec',
+  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxN0dX9jmDAXOCm5GDqiyvnfkIPww9sWmjAE1IVokXsBqaAI5IwXCQIv5U2vsSRugi2aw/exec',
   STORE_NAME:      'Bala Ji Medical Store',
   STORE_ADDRESS:   'Main Market, Lakhimpur, Uttar Pradesh 262701',
   STORE_PHONE:     '+91-9792300332',
