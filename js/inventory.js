@@ -160,16 +160,17 @@ const Inventory = (() => {
   // ── Save Medicine ──────────────────────────────────────
   async function handleSaveMedicine(e) {
     e.preventDefault();
-    const isEdit = !!document.getElementById('med-id-field').value;
+    const isEdit     = !!document.getElementById('med-id-field').value;
+    const medicineId = isEdit ? document.getElementById('med-id-field').value : Utils.generateId('MED');
     const data = {
-      MedicineID:    isEdit ? document.getElementById('med-id-field').value : Utils.generateId('MED'),
+      MedicineID:    medicineId,
       MedicineName:  document.getElementById('med-name').value.trim(),
       Category:      document.getElementById('med-category').value,
       Company:       document.getElementById('med-company').value.trim(),
       BatchNo:       document.getElementById('med-batch').value.trim(),
       MFGDate:       document.getElementById('med-mfg').value,
       ExpiryDate:    document.getElementById('med-expiry').value,
-      StockQuantity: isEdit ? (allMedicines.find(m => m.MedicineID === data.MedicineID)?.StockQuantity || 0) : 0,
+      StockQuantity: isEdit ? (allMedicines.find(m => m.MedicineID === medicineId)?.StockQuantity || 0) : 0,
     };
     if (!data.MedicineName) { Toast.warning('Medicine name is required.'); return; }
     if (!data.Category)     { Toast.warning('Category is required.'); return; }

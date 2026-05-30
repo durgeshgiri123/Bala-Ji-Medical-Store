@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing — Bala Ji Medical Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js"></script>
+</head>
+<body>
+  <script>document.write(getLoadingHTML());</script>
+  <div class="app-wrapper">
+    <script>document.write(getSidebarHTML('billing.html'));</script>
+    <main class="main-content">
+      <script>document.write(getTopbarHTML('Billing'));</script>
+      <div class="page-body">
+        <div class="page-header"><div><h1>🧾 Billing & Invoice</h1><p>Create professional invoices, update stock, and share bills by WhatsApp or Email.</p></div><button id="btn-new-bill" class="btn btn-outline-primary">🆕 New Bill</button></div>
+        <section id="billing-section" class="card mb-4"><div class="card-header"><div class="card-title">Invoice <span id="inv-no-display">—</span></div><div style="font-size:13px;color:var(--text-secondary)">Date: <span id="inv-date-display">—</span></div></div><div class="card-body"><div class="row g-3 mb-3"><div class="col-md-4"><label class="form-label">Customer Name <span class="required">*</span></label><input id="cust-name" class="form-control" required></div><div class="col-md-4"><label class="form-label">Customer Mobile <span class="required">*</span></label><input id="cust-mobile" maxlength="10" class="form-control" placeholder="10-digit mobile" required></div><div class="col-md-4"><label class="form-label">Customer Email</label><input id="cust-email" type="email" class="form-control"></div></div><div class="d-flex justify-content-between align-items-center mb-2"><h3 class="card-title">Medicines</h3><button id="btn-add-item" class="btn btn-sm btn-primary">➕ Add Medicine</button></div><div id="bill-items-wrap"></div><div class="row g-3 align-items-end mt-2"><div class="col-md-3"><label class="form-label">Tax % (optional)</label><input id="tax-input" type="number" min="0" step="0.01" class="form-control" placeholder="0"></div><div class="col-md-9"><div style="max-width:320px;margin-left:auto;line-height:2"><div class="d-flex justify-content-between"><span>Subtotal</span><strong id="subtotal-disp">₹0.00</strong></div><div class="d-flex justify-content-between"><span>Tax</span><strong id="tax-disp">₹0.00</strong></div><div class="d-flex justify-content-between" style="font-size:18px;color:var(--primary)"><span>Grand Total</span><strong id="grand-disp">₹0.00</strong></div></div></div></div><div class="d-flex justify-content-end mt-3"><button id="btn-generate-bill" class="btn btn-success btn-lg">✅ Generate Invoice</button></div></div></section>
+        <section id="invoice-section" class="card mb-4" style="display:none"><div class="card-header"><div class="card-title">Invoice Preview</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="btn-whatsapp" class="btn btn-whatsapp">📲 Send via WhatsApp</button><button id="btn-email" class="btn btn-email">✉️ Send Email</button><button id="btn-print-invoice" class="btn btn-outline-primary">🖨️ Print / PDF</button></div></div><div class="card-body"><div id="invoice-preview" class="invoice-preview"></div></div></section>
+        <section class="card"><div class="card-header"><div class="card-title">Recent Bills</div></div><div class="table-responsive"><table><thead><tr><th>Invoice</th><th>Date</th><th>Customer</th><th>Mobile</th><th>Total</th><th>Employee</th><th>Actions</th></tr></thead><tbody id="recent-bills-tbody"></tbody></table></div><div id="bills-pagination" class="card-body"></div></section>
+      </div>
+    </main>
+  </div>
+  <script src="js/billing.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@
 
 // ── CONFIGURATION ─────────────────────────────────────────
 const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE'; // Replace with your Google Sheet ID
+const STORE_PHONE = '+91-XXXXXXXXXX';
 const SHEET_NAMES = {
   EMPLOYEES:    'Employees',
   MEDICINES:    'Medicines',
@@ -306,7 +307,7 @@ ${data.tax ? `Subtotal: ₹${data.subtotal.toFixed(2)}\nTax:      ₹${data.tax.
 
 Bala Ji Medical Store
 Main Market, Lakhimpur, Uttar Pradesh 262701
-📞 ${CONFIG_EMAIL_PHONE || '+91-XXXXXXXXXX'}
+📞 ${STORE_PHONE}
 
 This is an auto-generated invoice. Medicines once sold cannot be returned.
     `;
