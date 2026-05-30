@@ -74,8 +74,8 @@ Core actions include:
 // =========================================================
 
 // ── CONFIGURATION ─────────────────────────────────────────
-const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE'; // Replace with your Google Sheet ID
-const STORE_PHONE = '+91-XXXXXXXXXX';
+const SPREADSHEET_ID = '1VJYOYUCAAphSXSjU5Y2SM5z0KRcClI1U6kPumM10_A8'; // Replace with your Google Sheet ID
+const STORE_PHONE = '+91-9792300332';
 const SHEET_NAMES = {
   EMPLOYEES:    'Employees',
   MEDICINES:    'Medicines',
@@ -482,3 +482,4 @@ function isExpiredGS(dateStr) {
 }
 
 ```
+https://script.google.com/macros/s/AKfycbzLE8uPtiaq9BO8s49XYD4fHgCWq3wOq-t4XgpUYya9KBkVhwX3KFhZjLHUmnTR091Yrg/exec

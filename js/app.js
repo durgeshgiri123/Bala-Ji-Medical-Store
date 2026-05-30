@@ -8,11 +8,11 @@
 
 // ── Config ────────────────────────────────────────────────
 const CONFIG = {
-  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec',
+  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzLE8uPtiaq9BO8s49XYD4fHgCWq3wOq-t4XgpUYya9KBkVhwX3KFhZjLHUmnTR091Yrg/exec',
   STORE_NAME:      'Bala Ji Medical Store',
   STORE_ADDRESS:   'Main Market, Lakhimpur, Uttar Pradesh 262701',
-  STORE_PHONE:     '+91-XXXXXXXXXX',
-  STORE_EMAIL:     'balajimedi@gmail.com',
+  STORE_PHONE:     '+91-9792300332',
+  STORE_EMAIL:     'balajimedicalstorelmp@gmail.com',
   GST_NO:          'GSTIN: XXXXXXXXXXXX',
   LOW_STOCK_THRESHOLD: 10,
   PAGE_SIZE:       15,
