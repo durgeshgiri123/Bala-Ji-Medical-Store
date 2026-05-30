@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bala Ji Medical Store — Medicine Catalogue</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { background: var(--bg); }
+    .pub-header {
+      background: linear-gradient(135deg, var(--bg-sidebar) 0%, var(--primary) 100%);
+      padding: 32px 24px 28px;
+      color: #fff;
+      text-align: center;
+    }
+    .pub-header h1 { font-family: var(--font-display); font-size: 28px; }
+    .pub-header p  { opacity: .75; margin-top: 4px; font-size: 14px; }
+    .pub-nav { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 0 24px; display:flex; align-items:center; justify-content:space-between; height:52px; }
+    .pub-nav a { text-decoration:none; color:var(--text-secondary); font-size:13px; font-weight:600; }
+    .pub-nav a:hover { color:var(--primary); }
+    .pub-body { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    .med-grid { display:grid; grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+    .med-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow-sm); transition:box-shadow var(--transition),transform var(--transition); }
+    .med-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
+    .med-card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+    .med-name { font-weight:700; font-size:14px; color:var(--text-primary); }
+    .med-company { font-size:11.5px; color:var(--text-muted); margin-top:2px; }
+    .med-details { font-size:12px; color:var(--text-secondary); line-height:2; margin-top:8px; }
+    .med-details strong { color:var(--text-primary); }
+  </style>
+</head>
+<body>
+
+  <div id="toast-container"></div>
+  <div id="loading-overlay" class="hidden">
+    <div class="spinner"></div>
+    <div class="loading-text">Loading medicines…</div>
+  </div>
+
+  <!-- Header -->
+  <div class="pub-header">
+    <div style="font-size:36px;margin-bottom:8px">💊</div>
+    <h1>Bala Ji Medical Store</h1>
+    <p>Main Market, Lakhimpur, Uttar Pradesh 262701 &nbsp;|&nbsp; Browse Available Medicines</p>
+  </div>
+
+  <!-- Nav -->
+  <div class="pub-nav">
+    <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--text-primary)">
+      💊 Medicine Catalogue
+    </div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <button id="theme-toggle" class="icon-btn" onclick="Theme.toggle()">🌙</button>
+      <a href="login.html">👤 Staff Login →</a>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="pub-body">
+
+    <!-- Filter Bar -->
+    <div class="filter-bar" style="margin-bottom:20px">
+      <div class="search-wrap" style="flex:1;min-width:200px;position:relative">
+        <span class="si" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted);pointer-events:none">🔍</span>
+        <input id="pub-search" class="form-control" style="padding-left:34px" placeholder="Search medicines…" autocomplete="off">
+      </div>
+      <select id="pub-cat-filter" class="form-select" style="max-width:160px">
+        <option value="">All Categories</option>
+      </select>
+      <select id="pub-status-filter" class="form-select" style="max-width:160px">
+        <option value="">All Status</option>
+        <option value="Available">Available</option>
+        <option value="Low Stock">Low Stock</option>
+        <option value="Out of Stock">Out of Stock</option>
+      </select>
+    </div>
+
+    <!-- Stats -->
+    <div class="stat-cards" style="margin-bottom:24px">
+      <div class="stat-card">
+        <div class="stat-icon green">💊</div>
+        <div class="stat-info"><div class="stat-value" id="pub-total">—</div><div class="stat-label">Total Medicines</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon blue">✅</div>
+        <div class="stat-info"><div class="stat-value" id="pub-available">—</div><div class="stat-label">Available</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon orange">⚠️</div>
+        <div class="stat-info"><div class="stat-value" id="pub-low">—</div><div class="stat-label">Low Stock</div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon red">❌</div>
+        <div class="stat-info"><div class="stat-value" id="pub-out">—</div><div class="stat-label">Out of Stock</div></div>
+      </div>
+    </div>
+
+    <!-- Grid / Table toggle -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div style="font-size:13px;color:var(--text-secondary)" id="result-count">Loading…</div>
+      <div style="display:flex;gap:6px">
+        <button id="view-grid" class="btn btn-sm btn-primary">⊞ Grid</button>
+        <button id="view-table" class="btn btn-sm btn-ghost">☰ Table</button>
+      </div>
+    </div>
+
+    <!-- Grid View -->
+    <div id="pub-grid" class="med-grid"></div>
+
+    <!-- Table View (hidden by default) -->
+    <div id="pub-table-wrap" class="card" style="display:none">
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Medicine Name</th>
+              <th>Category</th>
+              <th>Company</th>
+              <th>Batch No</th>
+              <th>Expiry</th>
+              <th>Stock</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="pub-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="pub-pagination"></div>
+
+    <p style="text-align:center;margin-top:32px;font-size:12px;color:var(--text-muted)">
+      For purchases, visit us at Main Market, Lakhimpur or call our store.
+    </p>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    let allMeds = [], filtered = [], currentPage = 1;
+    const ps = 20, viewMode = { v: 'grid' };
+
+    async function initPublic() {
+      Theme.init();
+      Loader.show();
+      const res = await API.getMedicines();
+      Loader.hide();
+      if (res.success) {
+        allMeds = res.data || [];
+        updateStats();
+        populateCats();
+        applyFilters();
+      } else {
+        document.getElementById('pub-grid').innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:40px">Unable to load medicines. Please try again later.</p>';
+      }
+
+      // Events
+      const debounced = Utils.debounce(applyFilters, 300);
+      document.getElementById('pub-search').addEventListener('input', debounced);
+      document.getElementById('pub-cat-filter').addEventListener('change', applyFilters);
+      document.getElementById('pub-status-filter').addEventListener('change', applyFilters);
+      document.getElementById('view-grid').addEventListener('click', () => setView('grid'));
+      document.getElementById('view-table').addEventListener('click', () => setView('table'));
+    }
+
+    function updateStats() {
+      document.getElementById('pub-total').textContent     = allMeds.length;
+      document.getElementById('pub-available').textContent = allMeds.filter(m => Utils.getMedStatus(m.StockQuantity,m.ExpiryDate)==='Available').length;
+      document.getElementById('pub-low').textContent       = allMeds.filter(m => Utils.getMedStatus(m.StockQuantity,m.ExpiryDate)==='Low Stock').length;
+      document.getElementById('pub-out').textContent       = allMeds.filter(m => Utils.getMedStatus(m.StockQuantity,m.ExpiryDate)==='Out of Stock').length;
+    }
+
+    function populateCats() {
+      const cats = [...new Set(allMeds.map(m => m.Category).filter(Boolean))].sort();
+      const sel  = document.getElementById('pub-cat-filter');
+      sel.innerHTML = '<option value="">All Categories</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
+
+    function applyFilters() {
+      const q   = (document.getElementById('pub-search').value || '').toLowerCase();
+      const cat = document.getElementById('pub-cat-filter').value;
+      const st  = document.getElementById('pub-status-filter').value;
+      filtered  = allMeds.filter(m => {
+        const status = Utils.getMedStatus(m.StockQuantity, m.ExpiryDate);
+        if (st && status !== st) return false;
+        if (cat && m.Category !== cat) return false;
+        if (q && !m.MedicineName.toLowerCase().includes(q) && !m.Company?.toLowerCase().includes(q)) return false;
+        return true;
+      });
+      currentPage = 1;
+      renderPage();
+    }
+
+    function renderPage() {
+      const start = (currentPage-1)*ps;
+      const page  = filtered.slice(start, start+ps);
+      document.getElementById('result-count').textContent = `Showing ${Math.min((currentPage-1)*ps+1,filtered.length)}–${Math.min(currentPage*ps,filtered.length)} of ${filtered.length} medicines`;
+
+      if (viewMode.v === 'grid') renderGrid(page);
+      else renderTable(page);
+
+      const pagWrap = document.getElementById('pub-pagination');
+      pagWrap.innerHTML = '';
+      pagWrap.appendChild(buildPagination(filtered.length, currentPage, ps, p => { currentPage = p; renderPage(); }));
+    }
+
+    function renderGrid(page) {
+      document.getElementById('pub-grid').style.display = '';
+      document.getElementById('pub-table-wrap').style.display = 'none';
+      const grid = document.getElementById('pub-grid');
+      if (!page.length) { grid.innerHTML = '<div class="empty-state"><div class="empty-icon">🔍</div><p>No medicines found.</p></div>'; return; }
+      grid.innerHTML = page.map(m => {
+        const status   = Utils.getMedStatus(m.StockQuantity, m.ExpiryDate);
+        const badgeMap = { Available:'badge-success', 'Low Stock':'badge-warning', 'Out of Stock':'badge-danger', Expired:'badge-secondary' };
+        return `<div class="med-card">
+          <div class="med-card-top">
+            <div>
+              <div class="med-name">${Utils.sanitize(m.MedicineName)}</div>
+              <div class="med-company">${Utils.sanitize(m.Company || '—')}</div>
+            </div>
+            <span class="badge ${badgeMap[status] || 'badge-secondary'}">${status}</span>
+          </div>
+          <div class="med-details">
+            <span><strong>Category:</strong> ${Utils.sanitize(m.Category)}</span><br>
+            <span><strong>Batch:</strong> ${Utils.sanitize(m.BatchNo || '—')}</span><br>
+            <span><strong>Expiry:</strong> ${Utils.formatDate(m.ExpiryDate)}</span><br>
+            <span><strong>Stock:</strong> ${m.StockQuantity} units</span>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    function renderTable(page) {
+      document.getElementById('pub-grid').style.display = 'none';
+      document.getElementById('pub-table-wrap').style.display = '';
+      const tbody = document.getElementById('pub-tbody');
+      tbody.innerHTML = page.map(m => {
+        const status = Utils.getMedStatus(m.StockQuantity, m.ExpiryDate);
+        return `<tr>
+          <td><strong>${Utils.sanitize(m.MedicineName)}</strong></td>
+          <td><span class="badge badge-info">${Utils.sanitize(m.Category)}</span></td>
+          <td>${Utils.sanitize(m.Company||'—')}</td>
+          <td>${Utils.sanitize(m.BatchNo||'—')}</td>
+          <td>${Utils.formatDate(m.ExpiryDate)}</td>
+          <td>${m.StockQuantity}</td>
+          <td>${Utils.getStatusBadge(status)}</td>
+        </tr>`;
+      }).join('') || '<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--text-muted)">No medicines found.</td></tr>';
+    }
+
+    function setView(v) {
+      viewMode.v = v;
+      document.getElementById('view-grid').className  = 'btn btn-sm ' + (v==='grid'  ? 'btn-primary' : 'btn-ghost');
+      document.getElementById('view-table').className = 'btn btn-sm ' + (v==='table' ? 'btn-primary' : 'btn-ghost');
+      renderPage();
+    }
+
+    document.addEventListener('DOMContentLoaded', initPublic);
+  </script>
+</body>
+</html>
