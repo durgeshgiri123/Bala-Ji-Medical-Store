@@ -116,8 +116,8 @@ const CONFIG = {
 
 ```javascript
 const CONFIG = {
-  API_URL: 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec',
-  API_TOKEN: 'replace-with-a-long-random-token'
+  API_URL: 'https://script.google.com/macros/s/AKfycbzqgM0eXjZpdb-Xj4FFupMAGXPmxj6HcwxhqQglWSKK_SjpXADjUdO-jXB19StIbtvk/exec',
+  API_TOKEN: '1i17gFh-FrxCx0AFsyJ5aAY71MdTCbPFfQqmygiAYbaA'
 };
 ```
 

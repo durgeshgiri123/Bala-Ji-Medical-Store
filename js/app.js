@@ -2,8 +2,8 @@
 'use strict';
 
 const CONFIG = {
-  API_URL: 'https://script.google.com/macros/s/AKfycbzOQEPhGlmSUl9ZBUsgEudA7cEJpbUOPqwWSwhf5vrFoIEQU5XRMk5vhbiQAtBEQNsE/exec',
-  API_TOKEN: 'CHANGE_THIS_PUBLIC_CLIENT_TOKEN',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzqgM0eXjZpdb-Xj4FFupMAGXPmxj6HcwxhqQglWSKK_SjpXADjUdO-jXB19StIbtvk/exec',
+  API_TOKEN: '1i17gFh-FrxCx0AFsyJ5aAY71MdTCbPFfQqmygiAYbaA',
   SESSION_KEY: 'bjms_session_v1',
   CSRF_KEY: 'bjms_csrf_v1',
   THEME_KEY: 'bjms_theme_v1',
