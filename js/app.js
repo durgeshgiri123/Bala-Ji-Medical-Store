@@ -3,7 +3,7 @@
 
 const CONFIG = {
   API_URL: 'https://script.google.com/macros/s/AKfycbzqgM0eXjZpdb-Xj4FFupMAGXPmxj6HcwxhqQglWSKK_SjpXADjUdO-jXB19StIbtvk/exec',
-  API_TOKEN: '1i17gFh-FrxCx0AFsyJ5aAY71MdTCbPFfQqmygiAYbaA',
+  API_TOKEN: 'BJMS_2026_LAKHIMPUR_9x72_ved_secure_token',
   SESSION_KEY: 'bjms_session_v1',
   CSRF_KEY: 'bjms_csrf_v1',
   THEME_KEY: 'bjms_theme_v1',
