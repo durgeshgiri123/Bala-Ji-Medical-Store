@@ -77,6 +77,7 @@ Status: Active
 CreatedDate: 2026-06-06
 ```
 
+
 For local demo mode only, before configuring Apps Script, the app includes a demo user:
 
 ```text
