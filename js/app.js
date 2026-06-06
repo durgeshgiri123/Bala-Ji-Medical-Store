@@ -2,7 +2,7 @@
 'use strict';
 
 const CONFIG = {
-  API_URL: 'https://script.google.com/macros/s/AKfycbzqgM0eXjZpdb-Xj4FFupMAGXPmxj6HcwxhqQglWSKK_SjpXADjUdO-jXB19StIbtvk/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbz_axrblMSt9ckKDm66chUF5ckXEXTnZR6umhg_sz9Z9I80ExDOFAxDYg_8atpB7ScH/exec',
   API_TOKEN: 'BJMS_2026_LAKHIMPUR_9x72_ved_secure_token',
   SESSION_KEY: 'bjms_session_v1',
   CSRF_KEY: 'bjms_csrf_v1',
