@@ -2,7 +2,7 @@
 'use strict';
 
 const CONFIG = {
-  API_URL: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzOQEPhGlmSUl9ZBUsgEudA7cEJpbUOPqwWSwhf5vrFoIEQU5XRMk5vhbiQAtBEQNsE/exec',
   API_TOKEN: 'CHANGE_THIS_PUBLIC_CLIENT_TOKEN',
   SESSION_KEY: 'bjms_session_v1',
   CSRF_KEY: 'bjms_csrf_v1',
