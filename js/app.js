@@ -14,7 +14,7 @@ const CONFIG = {
     name: 'Bala Ji Medical Store',
     address: 'Lakhimpur, Uttar Pradesh, India',
     phone: '+91-XXXXXXXXXX',
-    email: 'balajimedical@example.com'
+    email: 'balajimedical@gmail.com'
   }
 };
 
