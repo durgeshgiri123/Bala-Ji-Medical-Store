@@ -13,7 +13,7 @@ const CONFIG = {
   SHOP: {
     name: 'Bala Ji Medical Store',
     address: 'Lakhimpur, Uttar Pradesh, India',
-    phone: '+91-XXXXXXXXXX',
+    phone: '+91-6387499392',
     email: 'balajimedical@gmail.com'
   }
 };
